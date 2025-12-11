@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 16px;
+}
+
+.form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+.table {
+  height: 60vh;
+}
+
+.actionsCell {
+  display: flex;
+  gap: 8px;
+}
+
+.loading {
+  height: 100%;
+  width: 100%;
+}

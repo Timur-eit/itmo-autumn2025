@@ -17,7 +17,7 @@ export const PassengerModel = {
         contact_data->>'phone' AS phone,
         contact_data->>'email' AS email
       FROM bookings.tickets
-      ORDER BY ticket_no
+      ORDER BY ticket_no DESC
       LIMIT 20
     `);
 
