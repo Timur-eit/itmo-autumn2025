@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 import { PassengerService } from '../services/passengers.service';
 
 export const PassengersController = {
-  getAll: (req: Request, res: Response) => {
-    const data = PassengerService.getAll();
+  async getAll(_: Request, res: Response) {
+    const data = await PassengerService.getAll();
     res.json(data);
   },
 
-  getById: (req: Request, res: Response) => {
-    const passenger = PassengerService.getById(req.params.id);
+  async getById(req: Request, res: Response) {
+    const passenger = await PassengerService.getById(req.params.id);
 
     if (!passenger) {
       return res.status(404).json({ error: 'Passenger not found' });
@@ -17,23 +17,25 @@ export const PassengersController = {
     res.json(passenger);
   },
 
-  create: (req: Request, res: Response) => {
-    const newPassenger = PassengerService.create(req.body);
-    res.status(201).json(newPassenger);
+  async create(req: Request, res: Response) {
+    console.log('REQ BODY:', req.body);
+
+    const passenger = await PassengerService.create(req.body);
+    res.status(201).json(passenger);
   },
 
-  update: (req: Request, res: Response) => {
-    const result = PassengerService.update(req.params.id, req.body);
+  async update(req: Request, res: Response) {
+    const updated = await PassengerService.update(req.params.id, req.body);
 
-    if (!result) {
+    if (!updated) {
       return res.status(404).json({ error: 'Passenger not found' });
     }
 
-    res.json(result);
+    res.json(updated);
   },
 
-  delete: (req: Request, res: Response) => {
-    const removed = PassengerService.delete(req.params.id);
+  async delete(req: Request, res: Response) {
+    const removed = await PassengerService.delete(req.params.id);
 
     if (!removed) {
       return res.status(404).json({ error: 'Passenger not found' });

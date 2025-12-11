@@ -1,4 +1,4 @@
-import { Passenger } from '../models/passenger.model';
+import { Passenger } from '../models/passenger.model.mocks';
 
 export const mockPassengers: Passenger[] = [
   {
