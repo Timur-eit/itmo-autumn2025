@@ -1,12 +1,18 @@
 stages:
-  - test
+  - build
 
-hello_ci:
-  stage: test
+variables:
+  DOCKER_TLS_CERTDIR: ''
+
+build_images:
+  stage: build
   tags:
     - docker
   image: docker:26
+  services:
+    - name: docker:26-dind
+      command: ['--tls=false']
   script:
-    - docker --version
-    - echo "CI is running on Yandex Cloud VM"
-#
+    - docker version
+    - docker build -t autumn2025-frontend:ci ./frontend
+    - docker build -t autumn2025-backend:ci ./backend
