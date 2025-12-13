@@ -9,3 +9,4 @@ hello_ci:
   script:
     - docker --version
     - echo "CI is running on Yandex Cloud VM"
+#
