@@ -1,0 +1,11 @@
+stages:
+  - test
+
+hello_ci:
+  stage: test
+  tags:
+    - docker
+  image: docker:26
+  script:
+    - docker --version
+    - echo "CI is running on Yandex Cloud VM"
