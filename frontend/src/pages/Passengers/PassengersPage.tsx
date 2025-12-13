@@ -192,7 +192,7 @@ export const PassengersPage = () => {
       )}
 
       {!isLoading && !isError && (
-        <div>
+        <div className={styles.content}>
           <div className={styles.form}>
             <TextField
               id={CreatePassengerFiled.Name}

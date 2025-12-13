@@ -6,6 +6,13 @@
   padding: 16px;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
 .form {
   display: flex;
   gap: 12px;
@@ -22,6 +29,11 @@
 }
 
 .loading {
+  height: 100%;
+  width: 100%;
+}
+
+.error {
   height: 100%;
   width: 100%;
 }

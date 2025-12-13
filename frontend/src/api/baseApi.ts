@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { API_BASE_URL } from '../config/api';
 
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    // baseUrl: 'http://localhost:8080/api',
-    baseUrl: '/api',
+    baseUrl: API_BASE_URL,
   }),
   tagTypes: ['Passengers'],
   endpoints: () => ({}),
