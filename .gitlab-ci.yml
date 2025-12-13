@@ -18,3 +18,4 @@ build_images:
     - docker version
     - docker build -t autumn2025-frontend:ci ./frontend
     - docker build -t autumn2025-backend:ci ./backend
+#
