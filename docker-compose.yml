@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: autumn2025-postgres
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: timur_eit
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    image: autumn2025-backend
+    container_name: autumn2025-backend
+    depends_on:
+      - postgres
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8080:8080"
+
+  nginx:
+    image: nginx:stable
+    container_name: autumn2025-nginx
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./frontend/dist:/usr/share/nginx/html:ro
+
+volumes:
+  postgres_data:
