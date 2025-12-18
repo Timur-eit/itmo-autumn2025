@@ -53,8 +53,10 @@ deploy:
       ssh student@$DEPLOY_HOST "
       set -e 
       echo 'SSH OK'
-      cd /opt/autumn2025 &&
-      docker compose pull &&
+      cd /opt/autumn2025
+      docker compose version
+      docker compose down --remove-orphans
+      docker compose pull
       docker compose up -d
       docker compose ps
       "
