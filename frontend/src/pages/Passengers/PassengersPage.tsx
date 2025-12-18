@@ -1,5 +1,6 @@
 import { Button } from '@consta/uikit/Button';
 import { Modal } from '@consta/uikit/Modal';
+import { ProgressSpin } from '@consta/uikit/ProgressSpin';
 import { Table } from '@consta/uikit/Table';
 import { Text } from '@consta/uikit/Text';
 import { TextField } from '@consta/uikit/TextField';
@@ -181,7 +182,11 @@ export const PassengersPage = () => {
         </Text>
       )}
 
-      {isLoading && <div className={styles.loading}>ProgressSpin</div>}
+      {isLoading && (
+        <div className={styles.loading}>
+          <ProgressSpin size="2xl" />
+        </div>
+      )}
 
       {isError && (
         <div className={styles.error}>
