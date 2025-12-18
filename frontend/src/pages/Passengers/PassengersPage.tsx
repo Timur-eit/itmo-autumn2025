@@ -178,7 +178,7 @@ export const PassengersPage = () => {
       {/* // TODO убрать диблирование */}
       {!isLoading && !isError && (
         <Text size="s" view="secondary">
-          Создание, редактирование и удаление пассажиров
+          Создание, редактирование и удаление данных пассажиров
         </Text>
       )}
 
