@@ -38,7 +38,7 @@ build-frontend:
     - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
     - docker push "$CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHORT_SHA"
 
-deploy-ssh-check:
+deploy:
   stage: deploy
   image: alpine:latest
   before_script:
@@ -49,5 +49,14 @@ deploy-ssh-check:
     - echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
   script:
     - ssh student@$DEPLOY_HOST "echo SSH OK"
+    - |
+      ssh student@$DEPLOY_HOST "
+      set -e 
+      echo 'SSH OK'
+      cd /opt/autumn2025 &&
+      docker compose pull &&
+      docker compose up -d
+      docker compose ps
+      "
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'
