@@ -8,9 +8,11 @@ variables:
   DOCKER_TLS_CERTDIR: ''
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
+  DEPLOY_HOST: 89.169.148.15
 
 stages:
   - build
+  - deploy
 
 before_script:
   - docker info
@@ -35,3 +37,17 @@ build-frontend:
       ./frontend
     - docker push "$CI_REGISTRY_IMAGE/frontend:latest"
     - docker push "$CI_REGISTRY_IMAGE/frontend:$CI_COMMIT_SHORT_SHA"
+
+deploy-ssh-check:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache openssh
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+  script:
+    - ssh student@$DEPLOY_HOST "echo SSH OK"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
