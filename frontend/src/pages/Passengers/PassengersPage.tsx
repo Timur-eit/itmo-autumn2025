@@ -172,7 +172,10 @@ export const PassengersPage = () => {
   // TODO: декомпозировать
   return (
     <div className={styles.root}>
-      <Text size="xl" weight="bold">
+      <Text size="2xs" view="secondary">
+        Тестовое окружение
+      </Text>
+      <Text size="xl" weight="bold" view="brand">
         Административная панель пассажиров
       </Text>
       {/* // TODO убрать диблирование */}
