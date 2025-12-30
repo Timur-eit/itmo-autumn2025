@@ -8,7 +8,7 @@ variables:
   DOCKER_TLS_CERTDIR: ''
   DOCKER_HOST: tcp://docker:2375
   DOCKER_DRIVER: overlay2
-  DEPLOY_HOST: 89.169.148.15
+  DEPLOY_HOST: 158.160.165.203
 
 stages:
   - build
